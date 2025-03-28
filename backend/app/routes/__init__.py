@@ -1,0 +1,1 @@
+from app.routes import product_router
