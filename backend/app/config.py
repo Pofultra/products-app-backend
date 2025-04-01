@@ -6,6 +6,20 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Settings(BaseSettings):
+    # Configuraciones existentes...
+    
+    # Configuración del LLM
+    LLM_PROVIDER: str = os.getenv("LLM_PROVIDER", "openai")  # "openai" o "anthropic"
+    OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
+    ANTHROPIC_API_KEY: str = os.getenv("ANTHROPIC_API_KEY", "")
+    
+    # Templates disponibles
+    AD_TEMPLATES: dict = {
+        "facebook": ["basic", "detailed"],
+        "whatsapp": ["basic", "detailed"],
+        "revolico": ["basic", "detailed"]
+    }
+    
     # Configuración de la base de datos
     DB_HOST: str = os.getenv("DB_HOST", "localhost")
     DB_PORT: str = os.getenv("DB_PORT", "5432")

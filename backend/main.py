@@ -3,7 +3,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from app.config import settings
-from app.routes import product_router
+from app.routes import product_router, ad_sheet_router
 from app.db import Base, engine  # Importamos Base y engine para crear las tablas
 
 # Crear las tablas en la base de datos
@@ -33,7 +33,7 @@ app.mount("/uploads", StaticFiles(directory=settings.UPLOAD_DIR), name="uploads"
 
 # Incluir rutas
 app.include_router(product_router.router, prefix="/api")
-
+app.include_router(ad_sheet_router.router, prefix="/api")
 # Ruta de health check
 @app.get("/health")
 async def health_check():
